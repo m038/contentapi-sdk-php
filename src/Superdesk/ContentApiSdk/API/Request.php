@@ -14,6 +14,7 @@
 
 namespace Superdesk\ContentApiSdk\API;
 
+use Superdesk\ContentApiSdk\API\Request\RequestInterface;
 use Superdesk\ContentApiSdk\ContentApiSdk;
 use Superdesk\ContentApiSdk\Exception\ResponseException;
 use Superdesk\ContentApiSdk\Exception\RequestException;
@@ -23,7 +24,7 @@ use Superdesk\ContentApiSdk\Exception\InvalidDataException;
 /**
  * API Request object.
  */
-class Request
+class Request implements RequestInterface
 {
     /**
      * Protocol for api request.
