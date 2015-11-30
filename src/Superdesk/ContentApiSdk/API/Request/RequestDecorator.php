@@ -14,12 +14,12 @@
 
 namespace Superdesk\ContentApiSdk\API;
 
-abstract class RequestDecorator extends Request
+class RequestDecorator implements RequestInterface
 {
     /**
      * @var RequestInterface
      */
-    protected $requestInterface;
+    protected $decoratedRequest;
 
     /**
      * Intialize object.
@@ -28,6 +28,194 @@ abstract class RequestDecorator extends Request
      */
     public function __construct(RequestInterface $requestInterface)
     {
-        $this->requestInterface = $requestInterface;
+        $this->decoratedRequest = $requestInterface;
+    }
+
+    /**
+     * Get base url.
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->decoratedRequest->getBaseUrl();
+    }
+
+    /**
+     * Get full url.
+     *
+     * @return string
+     */
+    public function getFullUrl()
+    {
+        return $this->decoratedRequest->getFullUrl();
+    }
+
+    /**
+     * Set hostname.
+     *
+     * @param string $host
+     *
+     * @return self
+     */
+    public function setHost($host)
+    {
+        $this->decoratedRequest->setHost($host);
+
+        return $this;
+    }
+
+    /**
+     * Get host.
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->decoratedRequest->getHost();
+    }
+
+    /**
+     * Set port.
+     *
+     * @param int $port
+     *
+     * @return self
+     */
+    public function setPort($port)
+    {
+        $this->decoratedRequest->setPort($port);
+
+        return $this;
+    }
+
+    /**
+     * Get port.
+     *
+     * @return int
+     */
+    public function getPort()
+    {
+        return $this->decoratedRequest->getPort();
+    }
+
+    /**
+     * Set uri.
+     *
+     * @param string $uri
+     *
+     * @return self
+     */
+    public function setUri($uri)
+    {
+        $this->decoratedRequest->setUri($uri);
+
+        return $this;
+    }
+
+    /**
+     * Get uri.
+     *
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->decoratedRequest->getUri();
+    }
+
+    /**
+     * Set query parameters.
+     *
+     * @param string[] $parameters
+     *
+     * @return self
+     *
+     * @throws RequestException If parameters data types are invalid
+     */
+    public function setParameters(array $parameters)
+    {
+        $this->decoratedRequest->setParameters(ContentApiSdk::processParameters($parameters, $this->parameterValidation));
+
+        return $this;
+    }
+
+    /**
+     * Get query parameters.
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->decoratedRequest->getParameters();
+    }
+
+    /**
+     * Enables parameter validation
+     *
+     * @return self
+     */
+    public function enableParameterValidation()
+    {
+        $this->decoratedRequest->enableParameterValidation();
+
+        return $this;
+    }
+
+    /**
+     * Disables parameter validation
+     *
+     * @return self
+     */
+    public function disableParameterValidation()
+    {
+        $this->decoratedRequest->disableParameterValidation();
+    }
+
+    /**
+     * Gets the value of headers.
+     *
+     * @return string[]
+     */
+    public function getHeaders()
+    {
+        return $this->decoratedRequest->getHeaders();
+    }
+
+    /**
+     * Sets the value of headers.
+     *
+     * @param string[] $headers Value to set
+     *
+     * @return self
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->decoratedRequest->setHeaders($headers);
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of options.
+     *
+     * @return mixed[]
+     */
+    public function getOptions()
+    {
+        return $this->decoratedRequest->getOptions();
+    }
+
+    /**
+     * Sets the value of options.
+     *
+     * @param mixed[] $options Value to set
+     *
+     * @return self
+     */
+    public function setOptions(array $options)
+    {
+        $this->decoratedRequest->setOptions($options);
+
+        return $this;
     }
 }

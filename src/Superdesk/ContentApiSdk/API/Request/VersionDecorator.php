@@ -14,7 +14,22 @@
 
 namespace Superdesk\ContentApiSdk\API\Request;
 
-class ParamDecorator extends RequestDecorator
-{
+use Superdesk\ContentApiSdk\ContentApiSdk;
 
+/**
+ * Version decorator for API request.
+ */
+class VersionDecorator extends RequestDecorator
+{
+    /**
+     * Adds version to request uri.
+     *
+     * @return self
+     */
+    public function addVersion()
+    {
+        $this->decoratedRequest->setUri(sprintf('%s/%s', $this->decoratedRequest->getUri(), ContentApiSdk::getVersionURL()));
+
+        return self;
+    }
 }

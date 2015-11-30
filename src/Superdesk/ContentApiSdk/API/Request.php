@@ -107,19 +107,15 @@ class Request implements RequestInterface
     }
 
     /**
-     * Get base url.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getBaseUrl()
     {
-        return sprintf('%s://%s:%s/%s', $this->protocol, $this->host, $this->port, ContentApiSdk::getVersionURL());
+        return sprintf('%s://%s:%s', $this->protocol, $this->host, $this->port);
     }
 
     /**
-     * Get full url.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getFullUrl()
     {
@@ -127,11 +123,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Set hostname.
-     *
-     * @param string $host
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setHost($host)
     {
@@ -141,9 +133,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Get host.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getHost()
     {
@@ -151,11 +141,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Set port.
-     *
-     * @param int $port
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setPort($port)
     {
@@ -165,9 +151,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Get port.
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function getPort()
     {
@@ -175,11 +159,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Set uri.
-     *
-     * @param string $uri
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setUri($uri)
     {
@@ -189,9 +169,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Get uri.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getUri()
     {
@@ -199,13 +177,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Set query parameters.
-     *
-     * @param string[] $parameters
-     *
-     * @return self
-     *
-     * @throws RequestException If parameters data types are invalid
+     * {@inheritdoc}
      */
     public function setParameters(array $parameters)
     {
@@ -219,9 +191,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Get query parameters.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getParameters()
     {
@@ -251,9 +221,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Gets the value of headers.
-     *
-     * @return string[]
+     * {@inheritdoc}
      */
     public function getHeaders()
     {
@@ -261,11 +229,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Sets the value of headers.
-     *
-     * @param string[] $headers Value to set
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setHeaders(array $headers)
     {
@@ -275,9 +239,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Gets the value of options.
-     *
-     * @return mixed[]
+     * {@inheritdoc}
      */
     public function getOptions()
     {
@@ -285,11 +247,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Sets the value of options.
-     *
-     * @param mixed[] $options Value to set
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setOptions(array $options)
     {

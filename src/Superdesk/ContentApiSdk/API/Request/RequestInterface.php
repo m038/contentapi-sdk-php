@@ -16,31 +16,115 @@ namespace Superdesk\ContentApiSdk\Api\Request;
 
 interface RequestInterface
 {
+    /**
+     * Get host.
+     *
+     * @return string
+     */
     public function getHost();
 
+    /**
+     * Set hostname.
+     *
+     * @param string $host
+     *
+     * @return self
+     */
     public function setHost($host);
 
+    /**
+     * Get port.
+     *
+     * @return int
+     */
     public function getPort();
 
+    /**
+     * Set port.
+     *
+     * @param int $port
+     *
+     * @return self
+     */
     public function setPort($port);
 
+    /**
+     * Get uri.
+     *
+     * @return string
+     */
     public function getUri();
 
+    /**
+     * Set uri.
+     *
+     * @param string $uri
+     *
+     * @return self
+     */
     public function setUri($uri);
 
+    /**
+     * Get query parameters.
+     *
+     * @return array
+     */
     public function getParameters();
 
+    /**
+     * Set query parameters.
+     *
+     * @param string[] $parameters
+     *
+     * @return self
+     *
+     * @throws RequestException If parameters data types are invalid
+     */
     public function setParameters(array $parameters);
 
+    /**
+     * Gets the value of headers.
+     *
+     * @return string[]
+     */
     public function getHeaders();
 
+    /**
+     * Sets the value of headers.
+     *
+     * @param string[] $headers Value to set
+     *
+     * @return self
+     */
     public function setHeaders(array $headers);
 
+    /**
+     * Gets the value of options.
+     *
+     * @return mixed[]
+     */
     public function getOptions();
 
+    /**
+     * Sets the value of options.
+     *
+     * @param mixed[] $options Value to set
+     *
+     * @return self
+     */
     public function setOptions(array $options);
 
+    /**
+     * Get base url.
+     *
+     * @return string
+     */
     public function getBaseUrl();
 
+    /**
+     * Get full url.
+     *
+     * @return string
+     */
     public function getFullUrl();
 }

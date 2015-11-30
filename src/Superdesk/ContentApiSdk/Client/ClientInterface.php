@@ -14,7 +14,7 @@
 
 namespace Superdesk\ContentApiSdk\Client;
 
-use Superdesk\ContentApiSdk\API\Request;
+use Superdesk\ContentApiSdk\API\Request\RequestInterface;
 use Superdesk\ContentApiSdk\API\Response;
 
 /**
@@ -25,9 +25,9 @@ interface ClientInterface
     /**
      * Makes a call to the public api and returns a response.
      *
-     * @param  Request $request
+     * @param  RequestInterface $request
      *
      * @return Response
      */
-    public function makeApiCall(Request $request);
+    public function makeApiCall(RequestInterface $request);
 }
