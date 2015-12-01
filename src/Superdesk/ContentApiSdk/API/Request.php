@@ -59,7 +59,7 @@ class Request implements RequestInterface
      *
      * @var mixed[]
      */
-    protected $parameters;
+    protected $parameters = array();
 
     /**
      * Validate parameters, unset invalid ones.
@@ -90,7 +90,7 @@ class Request implements RequestInterface
      * @param mixed[] $parameters Parameters
      * @param int $port Port
      */
-    public function __construct($hostname = null, $uri = null, array $parameters = array(), $port = null)
+    public function __construct($hostname = null, $uri = null, array $parameters = null, $port = null)
     {
         if (is_string($hostname) && !empty($hostname)) {
             $this->setHost($hostname);
@@ -109,17 +109,9 @@ class Request implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getBaseUrl()
+    public function getHost()
     {
-        return sprintf('%s://%s:%s', $this->protocol, $this->host, $this->port);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getFullUrl()
-    {
-        return sprintf('%s/%s?%s', $this->getBaseUrl(), trim($this->uri, '/ '), http_build_query($this->parameters));
+        return $this->host;
     }
 
     /**
@@ -135,9 +127,9 @@ class Request implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getHost()
+    public function getPort()
     {
-        return $this->host;
+        return $this->port;
     }
 
     /**
@@ -153,9 +145,9 @@ class Request implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getPort()
+    public function getUri()
     {
-        return $this->port;
+        return $this->uri;
     }
 
     /**
@@ -171,9 +163,9 @@ class Request implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function getUri()
+    public function getParameters()
     {
-        return $this->uri;
+        return $this->parameters;
     }
 
     /**
@@ -182,20 +174,13 @@ class Request implements RequestInterface
     public function setParameters(array $parameters)
     {
         try {
+            // TODO: Maybe we should move the parameter validation to this class?
             $this->parameters = ContentApiSdk::processParameters($parameters, $this->parameterValidation);
         } catch (InvalidArgumentException $e) {
             throw new RequestException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParameters()
-    {
-        return $this->parameters;
     }
 
     /**
@@ -257,14 +242,18 @@ class Request implements RequestInterface
     }
 
     /**
-     * Sets page number and max results per page parameters.
-     *
-     * @param int $offset Offset of rows
-     * @param int $length Length of rows
+     * {@inheritdoc}
      */
-    public function setOffsetAndLength($offset, $length)
+    public function getBaseUrl()
     {
-        $this->parameters['page'] = ceil($offset / $length);
-        $this->parameters['max_results'] = $length;
+        return sprintf('%s://%s:%s', $this->protocol, $this->host, $this->port);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFullUrl()
+    {
+        return sprintf('%s/%s?%s', $this->getBaseUrl(), trim($this->uri, '/ '), http_build_query($this->parameters));
     }
 }

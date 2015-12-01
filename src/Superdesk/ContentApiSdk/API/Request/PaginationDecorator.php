@@ -17,19 +17,21 @@ namespace Superdesk\ContentApiSdk\API\Request;
 use Superdesk\ContentApiSdk\ContentApiSdk;
 
 /**
- * Version decorator for API request.
+ * Pagination decorator for API request.
  */
-class VersionDecorator extends RequestDecorator
+class PaginationDecorator extends RequestDecorator
 {
     /**
-     * Adds version to request uri.
+     * Sets page number and max results per page parameters.
      *
-     * @return self
+     * @param int $offset Offset of rows
+     * @param int $length Length of rows
      */
-    public function addVersion()
+    public function addPagination($offset, $length)
     {
-        $this->setUri(sprintf('%s/%s', $this->getUri(), ContentApiSdk::getVersionURL()));
-
-        return self;
+        $parameters = $this->getParameters();
+        $parameters['page'] = ceil($offset / $length);
+        $parameters['max_results'] = $length;
+        $this->setParameters($parameters);
     }
 }

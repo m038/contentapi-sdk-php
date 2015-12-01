@@ -32,23 +32,13 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get base url.
+     * Get host.
      *
      * @return string
      */
-    public function getBaseUrl()
+    public function getHost()
     {
-        return $this->decoratedRequest->getBaseUrl();
-    }
-
-    /**
-     * Get full url.
-     *
-     * @return string
-     */
-    public function getFullUrl()
-    {
-        return $this->decoratedRequest->getFullUrl();
+        return $this->decoratedRequest->getHost();
     }
 
     /**
@@ -66,13 +56,13 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get host.
+     * Get port.
      *
-     * @return string
+     * @return int
      */
-    public function getHost()
+    public function getPort()
     {
-        return $this->decoratedRequest->getHost();
+        return $this->decoratedRequest->getPort();
     }
 
     /**
@@ -90,13 +80,13 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get port.
+     * Get uri.
      *
-     * @return int
+     * @return string
      */
-    public function getPort()
+    public function getUri()
     {
-        return $this->decoratedRequest->getPort();
+        return $this->decoratedRequest->getUri();
     }
 
     /**
@@ -114,13 +104,13 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get uri.
+     * Get query parameters.
      *
-     * @return string
+     * @return array
      */
-    public function getUri()
+    public function getParameters()
     {
-        return $this->decoratedRequest->getUri();
+        return $this->decoratedRequest->getParameters();
     }
 
     /**
@@ -137,16 +127,6 @@ class RequestDecorator implements RequestInterface
         $this->decoratedRequest->setParameters(ContentApiSdk::processParameters($parameters, $this->parameterValidation));
 
         return $this;
-    }
-
-    /**
-     * Get query parameters.
-     *
-     * @return array
-     */
-    public function getParameters()
-    {
-        return $this->decoratedRequest->getParameters();
     }
 
     /**
@@ -217,5 +197,25 @@ class RequestDecorator implements RequestInterface
         $this->decoratedRequest->setOptions($options);
 
         return $this;
+    }
+
+    /**
+     * Get base url.
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->decoratedRequest->getBaseUrl();
+    }
+
+    /**
+     * Get full url.
+     *
+     * @return string
+     */
+    public function getFullUrl()
+    {
+        return $this->decoratedRequest->getFullUrl();
     }
 }
