@@ -115,6 +115,27 @@ interface RequestInterface
     public function setOptions(array $options);
 
     /**
+     * Get parameter validation status.
+     *
+     * @return boolean
+     */
+    public function getParameterValidation();
+
+    /**
+     * Enables parameter validation.
+     *
+     * @return self
+     */
+    public function enableParameterValidation();
+
+    /**
+     * Disables parameter validation.
+     *
+     * @return self
+     */
+    public function disableParameterValidation();
+
+    /**
      * Get base url.
      *
      * @return string

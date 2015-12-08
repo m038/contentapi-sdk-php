@@ -184,9 +184,15 @@ class Request implements RequestInterface
     }
 
     /**
-     * Enables parameter validation
-     *
-     * @return self
+     * {@inheritdoc}
+     */
+    public function getParameterValidation()
+    {
+        return $this->parameterValidation;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function enableParameterValidation()
     {
@@ -196,9 +202,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Disables parameter validation
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function disableParameterValidation()
     {

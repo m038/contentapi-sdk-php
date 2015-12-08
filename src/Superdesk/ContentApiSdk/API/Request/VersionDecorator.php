@@ -30,6 +30,6 @@ class VersionDecorator extends RequestDecorator
     {
         $this->setUri(sprintf('%s/%s', $this->getUri(), ContentApiSdk::getVersionURL()));
 
-        return self;
+        return $this;
     }
 }

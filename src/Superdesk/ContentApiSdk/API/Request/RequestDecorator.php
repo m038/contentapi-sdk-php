@@ -12,8 +12,13 @@
  * @license http://www.superdesk.org/license
  */
 
-namespace Superdesk\ContentApiSdk\API;
+namespace Superdesk\ContentApiSdk\API\Request;
 
+use Superdesk\ContentApiSdk\ContentApiSdk;
+
+/**
+ * Base decorator class for API Requests.
+ */
 class RequestDecorator implements RequestInterface
 {
     /**
@@ -32,9 +37,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get host.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getHost()
     {
@@ -42,11 +45,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Set hostname.
-     *
-     * @param string $host
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setHost($host)
     {
@@ -56,9 +55,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get port.
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function getPort()
     {
@@ -66,11 +63,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Set port.
-     *
-     * @param int $port
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setPort($port)
     {
@@ -80,9 +73,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get uri.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getUri()
     {
@@ -90,11 +81,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Set uri.
-     *
-     * @param string $uri
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setUri($uri)
     {
@@ -104,9 +91,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get query parameters.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getParameters()
     {
@@ -114,25 +99,25 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Set query parameters.
-     *
-     * @param string[] $parameters
-     *
-     * @return self
-     *
-     * @throws RequestException If parameters data types are invalid
+     * {@inheritdoc}
      */
     public function setParameters(array $parameters)
     {
-        $this->decoratedRequest->setParameters(ContentApiSdk::processParameters($parameters, $this->parameterValidation));
+        $this->decoratedRequest->setParameters(ContentApiSdk::processParameters($parameters, $this->getParameterValidation()));
 
         return $this;
     }
 
     /**
-     * Enables parameter validation
-     *
-     * @return self
+     * {@inheritdoc}
+     */
+    public function getParameterValidation()
+    {
+        return $this->decoratedRequest->getParameterValidation();
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function enableParameterValidation()
     {
@@ -142,19 +127,17 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Disables parameter validation
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function disableParameterValidation()
     {
         $this->decoratedRequest->disableParameterValidation();
+
+        return $this;
     }
 
     /**
-     * Gets the value of headers.
-     *
-     * @return string[]
+     * {@inheritdoc}
      */
     public function getHeaders()
     {
@@ -162,11 +145,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Sets the value of headers.
-     *
-     * @param string[] $headers Value to set
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setHeaders(array $headers)
     {
@@ -176,9 +155,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Gets the value of options.
-     *
-     * @return mixed[]
+     * {@inheritdoc}
      */
     public function getOptions()
     {
@@ -186,11 +163,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Sets the value of options.
-     *
-     * @param mixed[] $options Value to set
-     *
-     * @return self
+     * {@inheritdoc}
      */
     public function setOptions(array $options)
     {
@@ -200,9 +173,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get base url.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getBaseUrl()
     {
@@ -210,9 +181,7 @@ class RequestDecorator implements RequestInterface
     }
 
     /**
-     * Get full url.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getFullUrl()
     {

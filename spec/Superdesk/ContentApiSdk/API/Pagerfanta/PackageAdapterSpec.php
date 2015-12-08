@@ -17,7 +17,7 @@ namespace spec\Superdesk\ContentApiSdk\API\Pagerfanta;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Superdesk\ContentApiSdk\Client\ClientInterface;
-use Superdesk\ContentApiSdk\API\Request;
+use Superdesk\ContentApiSdk\API\Request\RequestInterface;
 use Superdesk\ContentApiSdk\API\Response;
 use Superdesk\ContentApiSdk\Data\Package;
 use Superdesk\ContentApiSdk\ContentApiSdk;
@@ -29,7 +29,7 @@ class PackageAdapterSpec extends ObjectBehavior
         $this->shouldHaveType('Superdesk\ContentApiSdk\API\Pagerfanta\PackageAdapter');
     }
 
-    function let(ClientInterface $client, Request $request, ContentApiSdk $sdk)
+    function let(ClientInterface $client, RequestInterface $request, ContentApiSdk $sdk)
     {
         $resolveAssociations = false;
         $this->beConstructedWith($client, $request, $sdk, $resolveAssociations);

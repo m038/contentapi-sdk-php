@@ -54,7 +54,7 @@ class OAuthDecorator extends RequestDecorator
     {
         $this->access_token = $access_token;
 
-        return self;
+        return $this;
     }
 
     /**
@@ -74,6 +74,6 @@ class OAuthDecorator extends RequestDecorator
         $headers['Authorization'] = sprintf('%s %s', 'OAuth2', $this->access_token);
         $this->decoratedRequest->setHeaders($headers);
 
-        return self;
+        return $this;
     }
 }

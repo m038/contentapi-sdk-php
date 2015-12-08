@@ -26,12 +26,16 @@ class PaginationDecorator extends RequestDecorator
      *
      * @param int $offset Offset of rows
      * @param int $length Length of rows
+     *
+     * @return self
      */
     public function addPagination($offset, $length)
     {
         $parameters = $this->getParameters();
-        $parameters['page'] = ceil($offset / $length);
-        $parameters['max_results'] = $length;
+        $parameters['page'] = (int) ceil($offset / $length);
+        $parameters['max_results'] = (int) $length;
         $this->setParameters($parameters);
+
+        return $this;
     }
 }
