@@ -14,8 +14,6 @@
 
 namespace Superdesk\ContentApiSdk\API\Request;
 
-use Superdesk\ContentApiSdk\ContentApiSdk;
-
 /**
  * Base decorator class for API Requests.
  */
@@ -103,7 +101,7 @@ class RequestDecorator implements RequestInterface
      */
     public function setParameters(array $parameters)
     {
-        $this->decoratedRequest->setParameters(ContentApiSdk::processParameters($parameters, $this->getParameterValidation()));
+        $this->decoratedRequest->setParameters($parameters);
 
         return $this;
     }

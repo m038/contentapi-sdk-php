@@ -69,7 +69,7 @@ class ResourceAdapter implements AdapterInterface
     {
         $response = $this->doCall($this->request);
 
-        return $this->response->getTotalResults();
+        return $response->getTotalResults();
     }
 
     /**
@@ -84,7 +84,6 @@ class ResourceAdapter implements AdapterInterface
      */
     public function getSlice($offset, $length)
     {
-        // $this->request->setOffsetAndLength($offset, $length);
         $paginationRequest = new PaginationDecorator($this->request);
         $paginationRequest->addPagination($offset, $length);
 

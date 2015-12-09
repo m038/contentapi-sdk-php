@@ -14,6 +14,8 @@
 
 namespace Superdesk\ContentApiSdk\API\Request;
 
+use Superdesk\ContentApiSdk\Exception\RequestException;
+
 /**
  * OAuth decorator for API request.
  */
@@ -61,16 +63,16 @@ class OAuthDecorator extends RequestDecorator
      * Sets Authentication header on decorated request.
      *
      * @return self
+     *
+     * @throws RequestException When access_token is not set
      */
     public function addAuthentication()
     {
-        // TODO: Throw Exception if access_token is not set yet
-        $headers = $this->decoratedRequest->getHeaders();
-
-        if (!is_array($headers)) {
-            $headers = array();
+        if ($this->access_token == null) {
+            throw new RequestException('Property access_token should be set.');
         }
 
+        $headers = $this->decoratedRequest->getHeaders();
         $headers['Authorization'] = sprintf('%s %s', 'OAuth2', $this->access_token);
         $this->decoratedRequest->setHeaders($headers);
 

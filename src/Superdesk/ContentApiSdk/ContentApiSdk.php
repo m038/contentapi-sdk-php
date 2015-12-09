@@ -426,13 +426,13 @@ class ContentApiSdk
      */
     public static function processParameters(array $requestParameters, $validate = false)
     {
-        $processedParameters = array();
+        $processedParameters = $requestParameters;
         $validParameters = self::getValidParameters();
 
         foreach ($requestParameters as $name => $value) {
 
             if ($validate && !in_array($name, $validParameters)) {
-                unset($requestParameters[$name]);
+                unset($processedParameters[$name]);
                 continue;
             }
 

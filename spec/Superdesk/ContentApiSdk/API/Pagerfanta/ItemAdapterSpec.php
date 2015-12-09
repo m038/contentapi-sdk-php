@@ -19,7 +19,6 @@ use Prophecy\Argument;
 use Superdesk\ContentApiSdk\Client\ClientInterface;
 use Superdesk\ContentApiSdk\API\Request\RequestInterface;
 use Superdesk\ContentApiSdk\API\Request\PaginationDecorator;
-use Superdesk\ContentApiSdk\API\Request;
 use Superdesk\ContentApiSdk\API\Response;
 use Superdesk\ContentApiSdk\Data\Item;
 
@@ -30,7 +29,7 @@ class ItemAdapterSpec extends ObjectBehavior
         $this->shouldHaveType('Superdesk\ContentApiSdk\API\Pagerfanta\ItemAdapter');
     }
 
-    function let(ClientInterface $client, Request $request)
+    function let(ClientInterface $client, RequestInterface $request)
     {
         $this->beConstructedWith($client, $request);
     }

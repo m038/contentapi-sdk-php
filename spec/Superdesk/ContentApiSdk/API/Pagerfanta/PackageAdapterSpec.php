@@ -32,8 +32,7 @@ class PackageAdapterSpec extends ObjectBehavior
 
     function let(ClientInterface $client, RequestInterface $request, ContentApiSdk $sdk)
     {
-        $resolveAssociations = false;
-        $this->beConstructedWith($client, $request, $sdk, $resolveAssociations);
+        $this->beConstructedWith($client, $request, $sdk, false);
     }
 
     function its_method_get_slice_should_return_items($client, $request, $sdk, $resolveAssociations)
