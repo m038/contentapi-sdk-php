@@ -28,7 +28,7 @@ class VersionDecorator extends RequestDecorator
      */
     public function addVersion()
     {
-        $this->setUri(sprintf('%s/%s', $this->getUri(), ContentApiSdk::getVersionURL()));
+        $this->setUri(sprintf('%s/%s', ContentApiSdk::getVersionURL(), $this->getUri()));
 
         return $this;
     }
