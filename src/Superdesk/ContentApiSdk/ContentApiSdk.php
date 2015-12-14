@@ -20,7 +20,7 @@ use Superdesk\ContentApiSdk\API\Response;
 use Superdesk\ContentApiSdk\API\Pagerfanta\ItemAdapter;
 use Superdesk\ContentApiSdk\API\Pagerfanta\PackageAdapter;
 use Superdesk\ContentApiSdk\API\Pagerfanta\ResourceCollection;
-use Superdesk\ContentApiSdk\Client\ClientInterface;
+use Superdesk\ContentApiSdk\Client\ApiClientInterface;
 use Superdesk\ContentApiSdk\Data\Item;
 use Superdesk\ContentApiSdk\Data\Package;
 use Superdesk\ContentApiSdk\Exception\ContentApiException;
@@ -52,6 +52,11 @@ class ContentApiSdk
      * Supported API version by this SDK version
      */
     const API_VERSION = 1;
+
+    /**
+     * Useragent string sent to the API when making requests.
+     */
+    const USERAGENT = 'Content API SDK '. self::API_VERSION;
 
     /**
      * A list of parameters the Content API accepts.
@@ -86,13 +91,20 @@ class ContentApiSdk
     protected $port = null;
 
     /**
+     * Authentication object.
+     *
+     * @var AuthenticationInterface
+     */
+    protected $authentication = null;
+
+    /**
      * Construct method for class.
      *
-     * @param ClientInterface $client
+     * @param ApiClientInterface $client
      * @param string|null $host
      * @param int|null $port
      */
-    public function __construct(ClientInterface $client, $host = null, $port = null)
+    public function __construct(ApiClientInterface $client, $host = null, $port = null)
     {
         $this->client = $client;
 
